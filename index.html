@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>工法検索システム</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="script.js"></script> <!-- JavaScriptファイルを読み込む -->
+<link rel="stylesheet" type="text/css" href="style.css"> <!-- スタイルシートを読み込む -->
+</head>
+
+<body>
+
+    <div id="loading-screen">
+        <div class="loader"></div>
+    </div>
+    
+
+    <h1 class="title">工法検索システム</h1>
+
+    <div id="exp" class="moji1">
+        <p id="exp1">キーボードで入力してください。</p>
+    </div>
+
+    <div class="cp_iptxt">
+        <p id="textInput">
+            <input type="text" id="text" placeholder="" class="ef">
+            <label>質問を入力</label>
+            <span class="focus_bg"></span>
+        </p>
+    </div>
+
+    <div class="cp_iptxt">
+        <p id="speechInputContainer" style="display: none;">
+            <input type="text" id="speechInput" placeholder="" name="speechInput" class="ef">
+            <label>質問をしゃべる</label>
+            <span class="focus_bg"></span>
+        </p>
+    </div>
+
+    <p><button id="toggleButton" type="button" class="button">入力方法切替え</button></p>
+    <p><button id="startButton" type="button" style="display: none;" class="button">開始</button> <button id="stopButton" type="button" style="display: none;" class="button">停止</button></p>
+    <p><button id="submitButton" type="button"class="button">送信</button></p>
+    <div id="check" class="moji1"></div>
+    <div id="iframes"></div>    
+    <textarea id="response" cols=180 rows=50 disabled></textarea>
+</body>
+</html>
