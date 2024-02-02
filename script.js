@@ -92,61 +92,68 @@ $(function(){
 
     $("#submitButton").click(function() {
         $("#loading-screen").show(); // ローディング画面を表示
-    
+
         $("#iframes").empty(); // ページ内の特定の要素を削除する場合
         $("response").empty(); // ページ内の特定の要素を削除する場合
         var url = "https://niwtgpxo75.execute-api.us-east-1.amazonaws.com/test";
         var JSONdata = {
             "key1": $("#text").val() || $("#speechInput").val() // テキスト入力もしくは音声入力の値を取得
         };
-    
+
+        //alert(JSON.stringify(JSONdata));
+        //alert("検索中・・・")
+
         $.ajax({
-            type: 'post',
-            url: url,
-            data: JSON.stringify(JSONdata),
+            type : 'post',
+            url : url,
+            data : JSON.stringify(JSONdata),
             contentType: 'application/json',
-            dataType: 'json',
+            dataType : 'json',
             scriptCharset: 'utf-8',
-            success: function(data) {
+            success : function(data) {
                 // Success
+                //alert("success");
+                //alert(JSON.stringify(data,null,"\t"));
+                //$("#response").html(JSON.stringify(data,null,"\t"));
+
+                //~に関する資料を表示します。
                 $("#check").append("「" + $("#text").val() + "」　に関する資料を表示します。");
                 // リンクを作成する
                 for (var i = 0; i < data.length; i++) {
                     var item = data[i];
                     if (item["資料URL"]) {
                         var url = item["資料URL"] + "#page=" + item["参考ページ"];
-                        if (item["参考ページ"]) {
+                        if(item["参考ページ"]){
                             var page = item["参考ページ"];
                             var link = $('<a>', {
-                                text: url, //表示
-                                href: url, //とび先
-                                target: '_blank' //新規ウィンドウ
-                            });
+                                text: url,          //表示
+                                href: url,          //とび先
+                                target: '_blank'    //新規ウィンドウ
+                            }); 
                         }
-    
-                        // PDFを表示する
-                        var pdfUrl = item["資料URL"];
-                        var viewerUrl = 'https://mozilla.github.io/pdf.js/web/viewer.html';
-                        var viewerIframe = $('<iframe>', {
-                            src: viewerUrl + '?file=' + encodeURIComponent(pdfUrl),
-                            width: "100%",
-                            height: "600px"
+
+                        // iframeを生成する
+                        var iframe = $('<iframe>', {
+                            title: "pdfjs-default-viewer",
+                            src: url,
+                            width: "1200px",
+                            height: "1200px"
                         });
-                        $("#iframes").append(viewerIframe); // iframeを追加する
+                        $("#iframes").append(iframe); // iframeを追加する
                     }
                 }
             },
-            error: function(data) {
+            error : function(data) {
+
                 // Error
                 alert("error");
-                alert(JSON.stringify(data, null, "\t"));
+                alert(JSON.stringify(data,null,"\t"));
                 JSON.parse(data);
-                $("#response").html(JSON.stringify(data, null, "\t"));
+                $("#response").html(JSON.stringify(data,null,"\t"));
             },
             complete: function() {
                 $("#loading-screen").hide(); // Ajaxリクエスト完了後にローディング画面を非表示
             }
         });
     });
-    
 });
