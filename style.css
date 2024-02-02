@@ -1,0 +1,121 @@
+.title{
+    padding: 0.5em;/*文字周りの余白*/
+    color: #010101;/*文字色*/
+    background: #eaf3ff;/*背景色*/
+    border-bottom: solid 3px #516ab6;/*下線*/
+}
+
+.moji1{
+    padding: 0.2em;/*文字周りの余白*/
+    color: #010101;/*文字色*/
+    font-size: 1.2rem;/*文字サイズ*/
+    font-weight: bold;/*文字の太さ*/
+}
+
+.cp_iptxt {
+	position: relative;
+	width: 80%;
+	margin: 40px 3%;
+}
+.cp_iptxt input[type='text'] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	letter-spacing: 1px;
+	padding-left: 4em;
+}
+.cp_iptxt input[type='text']:focus {
+	outline: none;
+}
+.ef {
+	position: relative;
+	padding: 7px 15px;
+	border: 0;
+	border: 1px solid #1b2538;
+	background: transparent;
+}
+.ef ~ .focus_bg {
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	transition: 0.4s;
+	background-color: transparent;
+}
+.ef:focus {
+	border: 1px solid #da3c41;
+}
+.ef:focus ~ .focus_bg, .cp_iptxt.ef ~ .focus_bg {
+	width: 100%;
+	transition: 0.4s;
+	background-color: rgba(218,60,65,.3);
+}
+.ef ~ label {
+	position: absolute;
+	z-index: -1;
+	top: 10px;
+	left: 14px;
+	width: 100%;
+	transition: 0.3s;
+	letter-spacing: 0.5px;
+	color: #aaaaaa;
+}
+.ef:focus ~ label, .cp_iptxt.ef ~ label {
+	font-size: 12px;
+	top: -18px;
+	left: 0;
+	transition: 0.3s;
+	color: #da3c41;
+}
+
+  
+#loading-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 9999;
+}
+
+.loader {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -25px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* おしゃれなボタンのスタイル */
+.button {
+    display: inline-block;
+    background-color: #eaf3ff; /* ボタンの背景色 */
+    color: 010101; /* ボタンの文字色 */
+    padding: 10px 20px; /* ボタンのパディング */
+    font-size: 16px; /* ボタンの文字サイズ */
+	font-weight: bold;/*文字の太さ*/
+    border: none; /* ボタンの境界線 */
+    border-radius: 5px; /* ボタンの角丸 */
+    cursor: pointer; /* カーソルのスタイル */
+    transition: background-color 0.3s; /* ボタンのホバー時のアニメーション */
+}
+
+/* ボタンのホバー時のスタイル */
+.button:hover {
+    background-color: rgba(218,60,65,.3); /* ホバー時の背景色 */
+}
