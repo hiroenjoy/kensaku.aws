@@ -93,12 +93,15 @@ $(function(){
     $("#submitButton").click(function() {
         $("#loading-screen").show(); // ローディング画面を表示
 
+        $("#check1").empty(); // ページ内の特定の要素を削除する場合
+        $("#check2").empty(); // ページ内の特定の要素を削除する場合
         $("#iframes").empty(); // ページ内の特定の要素を削除する場合
         $("response").empty(); // ページ内の特定の要素を削除する場合
         var url = "https://niwtgpxo75.execute-api.us-east-1.amazonaws.com/test";
         var JSONdata = {
             "key1": $("#text").val() || $("#speechInput").val() // テキスト入力もしくは音声入力の値を取得
         };
+
 
         //alert(JSON.stringify(JSONdata));
         //alert("検索中・・・")
@@ -114,10 +117,10 @@ $(function(){
                 // Success
                 //alert("success");
                 //alert(JSON.stringify(data,null,"\t"));
-                //$("#response").html(JSON.stringify(data,null,"\t"));
+                $("#response").html(JSON.stringify(data,null,"\t"));
 
                 //~に関する資料を表示します。
-                $("#check").append("「" + $("#text").val() + "」　に関する資料を表示します。");
+                $("#check1").append("「" + $("#text").val() + "」　に関する資料を表示します。(ユーザの質問)");
                 // リンクを作成する
                 for (var i = 0; i < data.length; i++) {
                     var item = data[i];
@@ -141,7 +144,11 @@ $(function(){
                         });
                         $("#iframes").append(iframe); // iframeを追加する
                     }
+                    if(item["prompt_question"]){
+                        var prompt_question = item["prompt_question"]
+                    }
                 }
+                $("#check2").append("「" + prompt_question + "」　に関する資料を表示します。(bedrockの生成)");
             },
             error : function(data) {
 
